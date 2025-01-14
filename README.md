@@ -140,12 +140,57 @@ add name=PCManajer-Download packet-mark=PCManajer-Download \
 add name=PCStaf-Download packet-mark=PCStaf-Download \
     limit-at=512k max-limit=512k parent=AreaStaf-Download queue=default
 ```
-verifikasi konfigurasi:
-```sh
 
+verifikasi konfigurasi dari PC Clinet:
+```sh
+# PC Eksekutif
+eksekutif:~# speedtest
+Retrieving speedtest.net configuration...
+Testing from Dinas Komunikasi dan Informatika Kota Pangkalpinan (103.179.69.9)...
+Retrieving speedtest.net server list...
+Selecting best server based on ping...
+Hosted by BLiP (Denpasar) [965.13 km]: 31.998 ms
+Testing download speed................................................................................
+Download: 1.83 Mbit/s
+Testing upload speed......................................................................................................
+Upload: 2.05 Mbit/s
+
+# PC Manajer
+manajer:~# speedtest
+Retrieving speedtest.net configuration...
+Testing from Dinas Komunikasi dan Informatika Kota Pangkalpinan (103.179.69.9)...
+Retrieving speedtest.net server list...
+Selecting best server based on ping...
+Hosted by BLiP (Denpasar) [965.13 km]: 32.675 ms
+Testing download speed................................................................................
+Download: 0.92 Mbit/s
+Testing upload speed......................................................................................................
+Upload: 1.14 Mbit/s
+
+# PC Staf
+staf:~# speedtest
+Retrieving speedtest.net configuration...
+Testing from Dinas Komunikasi dan Informatika Kota Pangkalpinan (103.179.69.9)...
+Retrieving speedtest.net server list...
+Selecting best server based on ping...
+Hosted by BLiP (Denpasar) [965.13 km]: 33.489 ms
+Testing download speed................................................................................
+Download: 0.42 Mbit/s
+Testing upload speed......................................................................................................
+Upload: 0.71 Mbit/s
 ```
 
-test with apache benchmark:
-```sh
-ab -n 1000 -c 100 http://belajarfreebsd.or.id/
-```
+Tools Untuk Menguji Bandwith pada Interface
+1. Speedtest
+- sudo apt install speedtest-cli
+- speedtest #cmd
+
+2. Fast
+- npm install --global fast-cli
+- fast #cmd download
+- fast -u #cmd upload
+
+3. iPerf
+- sudo apt install iperf
+- iperf -s #cmd from side server
+- iperf -c ip_server-target #cmd from client
