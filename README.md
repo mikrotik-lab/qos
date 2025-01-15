@@ -1,15 +1,16 @@
 # qos
 QoS (Quality of Service)
 
-<img src="qos.png">
+<img src="topology.png">
 
 Tahapan Konfigurasi IP Public Static :
 1. Set Identity Router
 2. Set Nama Interface
 3. Add IP Address
-- IP address/ether1 = 192.168.122.2/24 (Internet)
-- IP address/ether2 = 192.168.1.1/24 (LAN1)
-- IP address/ether3 = 192.168.2.0/24 (LAN2)
+- IP address/ether1 = 192.168.122.2/24
+- IP address/ether2 = 192.168.1.1/24
+- IP address/ether3 = 192.168.2.0/24
+- IP address/ether4 = 10.0.0.0/24
 4. Set DNS
 5. Add Routing
 6. Set DHCP Server
@@ -27,11 +28,13 @@ Tahapan Konfigurasi IP Public Static :
 set [ find default-name=ether2 ] name=ether2-inet
 set [ find default-name=ether3 ] name=ether3-pimpinan
 set [ find default-name=ether4 ] name=ether4-staf
+set [ find default-name=ether5 ] name=ether5-server
 # Konfigurasi menambah IP Address :
-/ip address 
+/ip address
 add address=192.168.122.2/24 interface=ether2-inet
 add address=192.168.1.1/24 interface=ether3-pimpinan
 add address=192.168.2.1/24 interface=ether4-staf
+add address=10.0.0.1/24 interface=ether5-server
 # Konfigurasi menambah DNS :
 /ip dns set allow-remote-requests=yes servers=8.8.8.8,8.8.4.4
 # Konfigurasi menambah Routing :
@@ -53,6 +56,7 @@ add address=192.168.2.0/24 dns-server=192.168.122.1,8.8.8.8,8.8.4.4 gateway=192.
 /ip firewall nat 
 add chain=srcnat src-address=192.168.1.0/24 out-interface=ether2-inet action=masquerade
 add chain=srcnat src-address=192.168.2.0/24 out-interface=ether2-inet action=masquerade
+add chain=srcnat src-address=10.0.0.0/24 out-interface=ether2-inet action=masquerade
 ```
 
 QoS (Quality of Service)
