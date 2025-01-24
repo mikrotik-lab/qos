@@ -34,7 +34,7 @@ set [ find default-name=ether5 ] name=ether5-server
 add address=192.168.122.2/24 interface=ether2-inet
 add address=192.168.1.1/24 interface=ether3-pimpinan
 add address=192.168.2.1/24 interface=ether4-staf
-add address=10.0.0.1/24 interface=ether5-server
+add address=10.0.0.1/29 interface=ether5-server
 # Konfigurasi menambah DNS :
 /ip dns set allow-remote-requests=yes servers=8.8.8.8,8.8.4.4
 # Konfigurasi menambah Routing :
@@ -65,9 +65,9 @@ QoS (Quality of Service)
 /ip firewall address-list 
 add address=192.168.0.0/16 list=AreaKantor
 add address=192.168.1.0/24 list=PCPimpinan
+add address=192.168.2.1-192.168.2.127 list=PCManajer
+add address=192.168.2.128-192.168.2.254 list=PCStaf
 #add address=192.168.0.0/24 list=AreaWLAN
-add address=192.168.2.128 list=PCManajer
-add address=192.168.2.254 list=PCStaf
 
 /ip firewall mangle 
 add chain=forward src-address-list=PCPimpinan \
